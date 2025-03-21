@@ -14,29 +14,24 @@ export default function AppLayout() {
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       {/* <Stack.Screen name="groupSelector" options={{ headerShown: false }} /> */}
-      {/* <Stack.Screen
+      <Stack.Screen
         name="post/[id]"
         options={{
-          headerTitle: "",
+          headerTitle: "Post",
           headerStyle: { backgroundColor: "#FF5700" },
-          headerLeft: () => (
-            <AntDesign
-              name="close"
-              size={24}
-              color="white"
-              onPress={() => router.back()}
-            />
-          ),
-          headerRight: () => (
-            <View style={{ flexDirection: "row", gap: 10 }}>
-              <AntDesign name="search1" size={24} color="white" />
-              <MaterialIcons name="sort" size={27} color="white" />
-              <Entypo name="dots-three-horizontal" size={24} color="white" />
-            </View>
-          ),
+          headerLeft: () => {
+            return (
+              <AntDesign
+                name="close"
+                size={24}
+                color="white"
+                onPress={() => router.back()}
+              />
+            );
+          },
           animation: "slide_from_bottom",
         }}
-      /> */}
+      />
     </Stack>
   );
 }

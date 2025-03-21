@@ -13,12 +13,14 @@ export default function PostListItem({
   post,
   isDetailedPost,
 }: PostListItemProps) {
+  const shouldShowImage = post.image || isDetailedPost;
   return (
     <Link href={`/post/${post.id}`}>
       <View
         style={{
           paddingHorizontal: 15,
           paddingVertical: 10,
+          width: "100%",
           gap: 7,
           borderBottomColor: "lightgrey",
           borderBottomWidth: 0.5,
@@ -83,7 +85,7 @@ export default function PostListItem({
           />
         )}
 
-        {post.description && !post.image && (
+        {isDetailedPost && post.description && post.image && (
           <Text numberOfLines={isDetailedPost ? undefined : 4}>
             {post.description}
           </Text>
