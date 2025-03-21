@@ -18,7 +18,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import Octicons from "@expo/vector-icons/Octicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import CommentListItem from "../../../componets/CommentListItem";
 
 export default function DetailedPost() {
@@ -37,10 +37,10 @@ export default function DetailedPost() {
 
   if (!detailedPost) return <Text>Post not found</Text>;
 
-  const handleReplyPress = (commentId: string) => {
+  const handleReplyPress = useCallback((commentId: string) => {
     console.log(commentId);
     inputRef.current?.focus();
-  };
+  }, []);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}

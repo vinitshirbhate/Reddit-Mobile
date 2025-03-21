@@ -4,7 +4,7 @@ import { formatDistanceToNowStrict } from "date-fns";
 import Entypo from "@expo/vector-icons/Entypo";
 import Octicons from "@expo/vector-icons/Octicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 type CommentListItemProps = {
   comment: Comment;
@@ -132,4 +132,4 @@ const CommentListItem = ({
   );
 };
 
-export default CommentListItem;
+export default memo(CommentListItem);
