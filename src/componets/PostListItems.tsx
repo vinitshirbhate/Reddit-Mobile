@@ -14,6 +14,7 @@ export default function PostListItem({
   isDetailedPost,
 }: PostListItemProps) {
   const shouldShowImage = post.image || isDetailedPost;
+
   return (
     <Link href={`/post/${post.id}`}>
       <View
@@ -29,10 +30,18 @@ export default function PostListItem({
       >
         {/* HEADER */}
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            source={{ uri: post.group.image }}
-            style={{ width: 20, height: 20, borderRadius: 10, marginRight: 5 }}
-          />
+          {post.group?.image && (
+            <Image
+              source={{ uri: post.group.image }}
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 10,
+                marginRight: 5,
+              }}
+            />
+          )}
+
           <View>
             <View style={{ flexDirection: "row", gap: 5 }}>
               <Text
@@ -78,7 +87,7 @@ export default function PostListItem({
         <Text style={{ fontWeight: "bold", fontSize: 17, letterSpacing: 0.5 }}>
           {post.title}
         </Text>
-        {post.image && (
+        {shouldShowImage && post.image && (
           <Image
             source={{ uri: post.image }}
             style={{ width: "100%", aspectRatio: 4 / 3, borderRadius: 15 }}
