@@ -1,7 +1,10 @@
 import { ClerkProvider } from "@clerk/clerk-expo";
 import { Slot } from "expo-router";
 import { tokenCache } from "../../cache";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useReactQueryDevTools } from "@dev-plugins/react-query";
 
+const queryClient = new QueryClient();
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
 if (!publishableKey) {
@@ -11,9 +14,12 @@ if (!publishableKey) {
 }
 
 export default function RootLayoutNav() {
+  useReactQueryDevTools(queryClient);
   return (
-    <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
-      <Slot />
-    </ClerkProvider>
+    <QueryClientProvider client={queryClient}>
+      <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
+        <Slot />
+      </ClerkProvider>
+    </QueryClientProvider>
   );
 }
